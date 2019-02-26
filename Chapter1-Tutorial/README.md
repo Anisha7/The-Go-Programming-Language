@@ -69,4 +69,4 @@ func main() {
 go run exercises1-2.go hi there fellas
 ```
 
-#3. Finding Duplicate Lines
+# 3. Finding Duplicate Lines
