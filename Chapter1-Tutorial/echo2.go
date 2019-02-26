@@ -8,8 +8,8 @@ func main() {
 	// two variables s, sep and type string for both
 	// if not initialized, numerics are 0 and strings are "" initially
 	var s, sep string
-	for i := 1; i < len(os.Args); i++ {
-		s += sep + os.Args[i]
+	for _, arg := range os.Args[1:] {
+		s += sep + arg
 		sep = " "
 	}
 	fmt.Println(s)
