@@ -132,3 +132,4 @@ go build exercises1-4.go
 ./exercises1-4 >multi.gif
 ```
 
+## 5. Fetching a URL
