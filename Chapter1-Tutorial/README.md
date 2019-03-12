@@ -102,5 +102,10 @@ This should print
 ### The above methods are known as "streaming mode, where input is read and broken into lines as needed. Let's read the entire input into memory in one big gulp and spit it into lines all at once in this next approach.
 Look over dup3.go
 
-```
-```
+```go run dup3.go test.txt test2.txt```
+
+### Now lets print the file names next to the duplicate lines as well
+Look over exercise1-3.go
+
+```go run exercises1-3.go test.txt test2.txt```
+
