@@ -1,5 +1,10 @@
 // Lissajous generates GIF animations of random Lissajous figures
-
+// 5. Change the Lissajous program's color palette to green on black, for added authenticity. 
+// color.RGBA{0xRR, 0xGG, 0xBB, 0xff}
+// green: rgba(0, 230, 64, 1), black: rgba(46, 49, 49, 1)
+// 6. Modify the Lissajous program to produce images in multiple colors by adding more values 
+// to palette and then displaying them by changing the third argument of SetColorIndex in 
+// some interesting way.
 package main
 
 import (
@@ -10,12 +15,22 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"time"
 )
 
-var palette = []color.Color{color.White, color.Black} 
+var palette = []color.Color{
+								color.RGBA{46, 49, 49, 2}, 
+								color.RGBA{0, 230, 64, 1},
+								color.RGBA{191, 85, 236, 1},
+								color.RGBA{249, 105, 14, 1},
+								color.RGBA{25, 181, 254, 1},
+							} 
 const (
-	whiteIndex = 0 // first color in palette
-	blackIndex = 1 // next color in palette
+	blackIndex = 0 // first color in palette
+	greenIndex = 1 // next color in palette
+	purpleIndex = 2
+	orangeIndex = 3
+	blueIndex = 4
 )
 
 func main() {
@@ -35,15 +50,21 @@ func lissajous(out io.Writer) {
 	anim := gif.GIF{ LoopCount : nframes } // struct of type gif.GIF
 	phase := 0.0 // phase difference
 
+	var indices = []uint8 {greenIndex, purpleIndex, orangeIndex, blackIndex}
+
 	for i := 0; i < nframes; i++ { // produces a single frame of animation
 		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
 		img := image.NewPaletted(rect, palette)
+		// getting a random number
+		s1 := rand.NewSource(time.Now().UnixNano())
+    	r1 := rand.New(s1)
+		var colorIndex = r1.Intn(4)
 
 		for t := 0.0; t < cycles*2*math.Pi; t += res { 
 			// x oscillator cycles to set color to corresponding (x,y) to black
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), blackIndex)
+			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), indices[colorIndex])
 		}
 
 		phase += 0.1

@@ -109,3 +109,26 @@ Look over exercise1-3.go
 
 ```go run exercises1-3.go test.txt test2.txt```
 
+## 4. Animated GIFS
+### Notes
+- Composite literals: compact notation for instantiating any of Go's composite types from a sequence of values. Example from file lissajous.go:
+```
+[]color.Color{...} // slice
+gif.GIF{...} // struct: a group of values v=called fields
+// anim is a struct of type gif.GIF
+```
+
+### So, we created GIFs using code!! How to run it?
+
+The basic version:
+```
+go build lissajous.go
+./lissajous >out.gif
+```
+
+The colorful version:
+```
+go build exercises1-4.go
+./exercises1-4 >multi.gif
+```
+
