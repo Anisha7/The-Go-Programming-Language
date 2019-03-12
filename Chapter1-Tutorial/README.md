@@ -65,8 +65,42 @@ func main() {
 ```
 
 ## Test exercises
-```
-go run exercises1-2.go hi there fellas
-```
+```go run exercises1-2.go hi there fellas```
 
 # 3. Finding Duplicate Lines
+### Semantics
+- Parantheses are never used around the condition in an if statement.
+- Maps don't have key errors. If non-existent key is accessed, map returns the zero value of its type.
+- Important Verbs (string formatting): %d (decimals), %s (string), %t (bool), %% (literal percent sign)
+- String literals: '\t' for tab and '\n' for new line
+- Functions and other package-level entities may be declared in any order
+
+### Lets try our first duplicate line function
+Look over dup1.go
+
+This will take in input from command line and tell us how many duplicate lines exist
+```echo "hi there\n moo moo\n moo moo" | go run dup1.go```
+This should print 
+```2   moo moo```
+
+### Now lets try one that can take in file as input
+Look over dup2.go
+
+```go run dup2.go test.txt```
+This should print
+```
+2       Hi there I am a person
+2       Why
+```
+
+We made sure to allow this function to also take command line input.
+Try this:
+```echo "hi there\n moo moo\n moo moo" | go run dup2.go```
+This should print 
+```2   moo moo```
+
+### The above methods are known as "streaming mode, where input is read and broken into lines as needed. Let's read the entire input into memory in one big gulp and spit it into lines all at once in this next approach.
+Look over dup3.go
+
+```
+```
