@@ -133,3 +133,16 @@ go build exercises1-4.go
 ```
 
 ## 5. Fetching a URL
+
+Test fetch.go by using the a random dog breed api (or use your own)
+
+```
+go build fetch.go
+go run fetch.go https://dog.ceo/api/breeds/image/random
+```
+
+Optimized for space and efficienct:
+```
+go build exercises1-5.go
+go run exercises1-5.go https://dog.ceo/api/breeds/image/random
+```
