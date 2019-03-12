@@ -13,3 +13,10 @@ https://golang.org/dl/
 - Clone or download this repository
 - cd to the directory where you saved it
 - follow run instructions in respective chapter's readme files to test programs
+
+## Why Go?
+- Expressive and efficient
+- Automatic memory management, or garbage collection
+- Good for building networked servers, and tools/systems for prograammers
+- Could be used for graphics, mobile applications, and machine learning
+- Runs faster and experiences fewer crashes from unexpected type errors
