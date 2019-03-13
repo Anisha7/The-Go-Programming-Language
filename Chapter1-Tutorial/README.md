@@ -182,3 +182,17 @@ This prints:
 ```
 URL.Path = "/help"
 ```
+
+### How to kill the running server?
+```
+Coming soon
+```
+
+## 8. Loose Ends
+- Control Flow: if, for, Switch statements
+- Named types: A type declaration to give a name to an existing type.
+- Pointers: & for address of a variable and * for retrieving the pointer
+- Methods and interfaces
+- Packages: https://golang.org/pkg , https://godoc.org
+    ``` go doc http.ListenAndServe```
+- Comments: /* ... */ for multiple line comments.

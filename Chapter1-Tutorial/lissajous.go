@@ -9,10 +9,12 @@ import (
 	"io"
 	"math"
 	"math/rand"
+	"net/http"
 	"os"
 )
 
-var palette = []color.Color{color.White, color.Black} 
+var palette = []color.Color{color.White, color.Black}
+
 const (
 	whiteIndex = 0 // first color in palette
 	blackIndex = 1 // next color in palette
@@ -20,26 +22,31 @@ const (
 
 func main() {
 	lissajous(os.Stdout)
+	// server work, connecting to web server
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		lissajous(w)
+	}
+	http.HandleFunc("/", handler)
 }
 
 func lissajous(out io.Writer) {
 	const (
-		cycles 	= 	5 		// number of complete x oscillator revolutions
-		res 	= 	0.001 	// angular resolution
-		size 	= 	100		// image canvas covers [-size...+size]
-		nframes =	64		// number of animation frames
-		delay	=	8		// delay between frames in 10ms unites
+		cycles  = 5     // number of complete x oscillator revolutions
+		res     = 0.001 // angular resolution
+		size    = 100   // image canvas covers [-size...+size]
+		nframes = 64    // number of animation frames
+		delay   = 8     // delay between frames in 10ms unites
 	)
 
-	freq := rand.Float64() * 3.0 // relative frequency of y oscillator
-	anim := gif.GIF{ LoopCount : nframes } // struct of type gif.GIF
-	phase := 0.0 // phase difference
+	freq := rand.Float64() * 3.0        // relative frequency of y oscillator
+	anim := gif.GIF{LoopCount: nframes} // struct of type gif.GIF
+	phase := 0.0                        // phase difference
 
 	for i := 0; i < nframes; i++ { // produces a single frame of animation
 		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
 		img := image.NewPaletted(rect, palette)
 
-		for t := 0.0; t < cycles*2*math.Pi; t += res { 
+		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			// x oscillator cycles to set color to corresponding (x,y) to black
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
