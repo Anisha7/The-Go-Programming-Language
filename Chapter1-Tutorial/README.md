@@ -146,3 +146,39 @@ Optimized for space and efficienct:
 go build exercises1-5.go
 go run exercises1-5.go https://dog.ceo/api/breeds/image/random
 ```
+
+## 6. Fetching URLs Concurrently
+
+```
+go build fetchall.go 
+go run fetchall.go golang.org gopl.io godoc.org
+```
+
+## 7. A Web Server
+Run the command:
+```
+go run server1.go &
+```
+This prints: 
+```
+[1] 3988
+```
+
+Run the command:
+```
+go build fetch.go
+./fetch http://localhost:8000
+```
+This prints:
+```
+URL.Path = "/"
+```
+
+Run the command:
+```
+./fetch http://localhost:8000/help
+```
+This prints:
+```
+URL.Path = "/help"
+```
