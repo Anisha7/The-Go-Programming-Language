@@ -8,5 +8,17 @@
 - "camel casing"
 
 ## 2. Declarations
+- var, const, type, and func
 
+```
+./boiling
+go run main.go
+```
+
+```
+./ftoc
+go run main.go
+```
+
+## 3. Variables
 
