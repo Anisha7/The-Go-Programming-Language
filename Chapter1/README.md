@@ -1,4 +1,6 @@
-# 1. Hello, World
+# Tutorial
+
+## 1. Hello, World
 
 ## package fmt
 This package contains functions like Println.
@@ -23,7 +25,7 @@ go run helloworld.go
 ```
 You should see Hello, world print in your terminal.
 
-# 2. Command-Line Arguments
+## 2. Command-Line Arguments
 ## package os
 Can access command line arguments in program using os.Args, which returns a slice of strings (similar to lists or arrays in other languages).
 
@@ -67,7 +69,7 @@ func main() {
 ## Test exercises
 ```go run exercises1-2.go hi there fellas```
 
-# 3. Finding Duplicate Lines
+## 3. Finding Duplicate Lines
 ### Semantics
 - Parantheses are never used around the condition in an if statement.
 - Maps don't have key errors. If non-existent key is accessed, map returns the zero value of its type.
