@@ -62,10 +62,26 @@ cd cf
 go build main.go
 ./main 212
 ```
-- Exersise 2.2: Write a general-purpose unit-conversion program analogous to cf that reads numbers from its command-line arguments or from standard input if there are no arguments, and converts each number into units like temperature in Celsius and Fahrenheit, etc. (Answer: Check kfc)
+- Exercise 2.2: Write a general-purpose unit-conversion program analogous to cf that reads numbers from its command-line arguments or from standard input if there are no arguments, and converts each number into units like temperature in Celsius and Fahrenheit, etc. (Answer: Check kfc)
 
 ```
 cd kfc
 go build main.go
 ./main 212
+```
+
+- Package Initialization: func init() {...} can be used. They are executed automatically when program starts, so you should not call or reference it. 
+- Exercises 2.3-2.5 in popcount package
+
+```
+➜ go run testPopcount.go
+Testing Version 1
+197
+0.00s elapsed
+Testing Version 2
+197
+0.00s elapsed
+Testing Version 3
+197
+0.00s elapsed
 ```
