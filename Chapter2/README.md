@@ -54,5 +54,18 @@ Usage of ./main:
 - Review tempconv0
 
 ## 6. Packages and Files
-- Review tempconv to see how packages are cleared and imports/exports are handles. Also notice how methods are used from a package file in other package files.
+- Review tempconv to see how packages are cleared and how methods are used from a package file in other package files.
 - Exercise 2.1 added in tempconv package: Add types, constants, and functions to tempconv for processing temperatures in the Kelvin scale. 
+- Imports: check cf files
+```
+cd cf
+go build main.go
+./main 212
+```
+- Exersise 2.2: Write a general-purpose unit-conversion program analogous to cf that reads numbers from its command-line arguments or from standard input if there are no arguments, and converts each number into units like temperature in Celsius and Fahrenheit, etc. (Answer: Check kfc)
+
+```
+cd kfc
+go build main.go
+./main 212
+```
