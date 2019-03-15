@@ -50,3 +50,9 @@ Usage of ./main:
 - Assignability: slices - madals := []string{"gold","silver","bronze"} is an array with those values at indices 0, 1, 2. (implicit assignment)
 
 ## 5. Type Declarations
+- type name underlying-type
+- Review tempconv0
+
+## 6. Packages and Files
+- Review tempconv to see how packages are cleared and imports/exports are handles. Also notice how methods are used from a package file in other package files.
+- Exercise 2.1 added in tempconv package: Add types, constants, and functions to tempconv for processing temperatures in the Kelvin scale. 
