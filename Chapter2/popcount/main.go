@@ -1,8 +1,6 @@
-// returns the number of set bits, that is, bits whose value is 1, ina uint64 value (population count)
+// returns the number of set bits, that is, bits whose value is 1, in a uint64 value (population count)
 
 package popcount
-
-import "fmt"
 
 //pc[i] in the population count of i.
 var pc [256]byte
@@ -10,9 +8,8 @@ var pc [256]byte
 func init() {
 	// i, _ would also do this, where is index and _ ignores value
 	for i := range pc {
-		pc[i] = pc[i/2] + byte(i&i)
+		pc[i] = pc[i/2] + byte(i&1)
 	}
-	fmt.Println(pc)
 }
 
 // PopCount returns the population count (number of set bits) of x
@@ -55,13 +52,9 @@ func PopCount3(x uint64) int {
 // non-zero bit of x. Write a version of PopCount that counts bits by
 // using this fact, and assess its performance
 func PopCount4(x uint64) int {
-	//TODO: FIX THIS FUNCTION
+	//TODO: FIX THIS FUNCTION: placeholder code right now
 	x = x & (x - 1)
-	var val byte
-	var i uint
-	for i < 8 {
-		val += pc[byte(x>>(i*8))]
-		i++
-	}
-	return int(val)
+	var i = PopCount3(x)
+
+	return i + 1
 }
