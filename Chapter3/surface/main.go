@@ -14,6 +14,8 @@ const (
 	xyscale       = width / 2 / xyrange // pixels per x or y unit
 	zscale        = height * 0.4        // pixels per z unit
 	angle         = math.Pi / 6         // angle of x, y axis (= 30 degrees)
+	red           = "#ff0000"
+	blue          = "#0000ff"
 )
 
 var sin30, cos30 = math.Sin(angle), math.Cos(angle) // angle = 30 degrees

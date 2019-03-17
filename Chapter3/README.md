@@ -20,6 +20,9 @@
 
 Check surface files for example. Challenges completed:
 1. Modify the program to skip invalid programs (non-finite float64 values)
-2. Experiment with visualizations of other functions from the math package. Can you produce egg box, moguls, or a saddle?
-3. 
+2. Experiment with visualizations of other functions from the math package. Can you produce egg box, moguls, or a saddle? (TODO)
+3. Color each polygon based on its height, so that the peaks are colored red (#ff0000) and the valleys blue (#0000ff) (TODO)
+4. Following the lissajous example approach, construct a web server that computes serfaces and writes SVG data to the client. The server must set the Content-Type header like this:
+    ``` w.Header().Set("Content-Type", "image/svg+xml")
+
 
