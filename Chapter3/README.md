@@ -25,4 +25,8 @@ Check surface files for example. Challenges completed:
 4. Following the lissajous example approach, construct a web server that computes serfaces and writes SVG data to the client. The server must set the Content-Type header like this:
     ``` w.Header().Set("Content-Type", "image/svg+xml") ```
 
+```
+cd surfacedraw
+go run main.go
+```
 
