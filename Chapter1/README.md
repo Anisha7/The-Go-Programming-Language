@@ -159,7 +159,7 @@ go run fetchall.go golang.org gopl.io godoc.org
 ## 7. A Web Server
 Run the command:
 ```
-go run server1.go &
+go run server1.go
 ```
 This prints: 
 ```

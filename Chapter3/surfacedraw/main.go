@@ -1,97 +1,65 @@
-// Lissajous generates GIF animations of random Lissajous figures
-
+// can also report on headers and form data that it receives
+// handler echoes the HTTP request
 package main
 
 import (
 	"fmt"
-	"image"
-	"image/color"
-	"image/gif"
-	"io"
+	"log"
 	"math"
 	"net/http"
-	"os"
 )
 
-var palette = []color.Color{color.White, color.Black}
-
 const (
-	red        = "#ff0000"
-	blue       = "#0000ff"
-	blackIndex = 1
-	whiteIndex = 0
-	// new
 	width, height = 600, 320            // canvas size in pixels
 	cells         = 100                 // number of grid cells
 	xyrange       = 30.0                // axis ranges
 	xyscale       = width / 2 / xyrange // pixels per x or y unit
 	zscale        = height * 0.4        // pixels per z unit
 	angle         = math.Pi / 6         // angle of x, y axis (= 30 degrees)
+	red           = "#ff0000"
+	blue          = "#0000ff"
 )
 
 var sin30, cos30 = math.Sin(angle), math.Cos(angle) // angle = 30 degrees
 var max = math.MaxFloat64
+var color = red
 
 func main() {
-	surface(os.Stdout)
-	// server work, connecting to web server
-	handler := func(w http.ResponseWriter, r *http.Request) {
-		surface(w)
-	}
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/", handler) // each request calls handler
+	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
 
-func surface(out io.Writer) {
-	const (
-		cycles  = 5     // number of complete x oscillator revolutions
-		res     = 0.001 // angular resolution
-		size    = 600   // image canvas covers [-size...+size]
-		nframes = 64    // number of animation frames
-		delay   = 8     // delay between frames in 10ms unites
+func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/svg+xml")
+	fmt.Fprintf(w, "<svg xmlns='http://www.w3.org/2000/svg' "+
+		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
+		"width='%d' height='%d'>", width, height)
 
-	)
-
-	// freq := rand.Float64() * 3.0        // relative frequency of y oscillator
-	anim := gif.GIF{LoopCount: nframes} // struct of type gif.GIF
-	phase := 0.0                        // phase difference
-
-	for i := 0; i < nframes; i++ { // produces a single frame of animation
-		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
-		img := image.NewPaletted(rect, palette)
-
-		for i := 0; i < cells; i++ {
-			for j := 0; j < cells; j++ {
-				// evaluate and check for valid polygon
-				ax, ay, err := corner(i+1, j)
-				if err != nil {
-					continue
-				}
-				img.SetColorIndex(int(ax), int(ay), blackIndex)
-				bx, by, err := corner(i, j)
-				if err != nil {
-					continue
-				}
-				img.SetColorIndex(int(bx), int(by), blackIndex)
-				cx, cy, err := corner(i, j+1)
-				if err != nil {
-					continue
-				}
-				img.SetColorIndex(int(cx), int(cy), blackIndex)
-				dx, dy, err := corner(i+1, j+1)
-				if err != nil {
-					continue
-				}
-				img.SetColorIndex(int(dx), int(dy), blackIndex)
+	for i := 0; i < cells; i++ {
+		for j := 0; j < cells; j++ {
+			// evaluate and check for valid polygon
+			ax, ay, err := corner(i+1, j)
+			if err != nil {
+				continue
 			}
+			bx, by, err := corner(i, j)
+			if err != nil {
+				continue
+			}
+			cx, cy, err := corner(i, j+1)
+			if err != nil {
+				continue
+			}
+			dx, dy, err := corner(i+1, j+1)
+			if err != nil {
+				continue
+			}
+			fmt.Fprintf(w, "<polygon points='%g,%g,%g,%g,%g,%g,%g,%g' fill='%s'/>\n",
+				ax, ay, bx, by, cx, cy, dx, dy, color)
 		}
-
-		phase += 0.1
-		// use dot notation to access struct fields
-		// anim.Delay = append(anim.Delay, delay)
-		anim.Image = append(anim.Image, img)
 	}
+	fmt.Fprintf(w, "</svg>")
 
-	gif.EncodeAll(out, &anim) // Note: ignoring encoding errors
 }
 
 func corner(i, j int) (float64, float64, error) {
@@ -105,6 +73,11 @@ func corner(i, j int) (float64, float64, error) {
 		return 0, 0, fmt.Errorf("Invalid Id")
 	}
 
+	if z < 0 {
+		color = blue
+	} else {
+		color = red
+	}
 	// Project (x,y,z) isometrically onto 2-D SCG canvas (sx, sy)
 	sx := width/2 + (x-y)*cos30*xyscale
 	sy := height/2 + (x+y)*sin30*xyscale - z*zscale
