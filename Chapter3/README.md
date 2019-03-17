@@ -14,3 +14,12 @@
 - page 53 for bitwise operations
 - %d, %o, %x for radix and format control with printing numbers (page 56)
 
+## 2. Floating-Point Numbers
+- Float32, Float64 types; Use math.MaxFloat32 or math.MaxFloat64 for math num
+- math.NaN() checks if value is not a number
+
+Check surface files for example. Challenges completed:
+1. Modify the program to skip invalid programs (non-finite float64 values)
+2. Experiment with visualizations of other functions from the math package. Can you produce egg box, moguls, or a saddle?
+3. 
+
