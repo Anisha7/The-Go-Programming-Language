@@ -18,7 +18,13 @@
 - Float32, Float64 types; Use math.MaxFloat32 or math.MaxFloat64 for math num
 - math.NaN() checks if value is not a number
 
-Check surface files for example. Challenges completed:
+Check surface files for example. 
+```
+cd surface
+go run main.go
+```
+
+Challenges completed:
 1. Modify the program to skip invalid programs (non-finite float64 values)
 2. Experiment with visualizations of other functions from the math package. Can you produce egg box, moguls, or a saddle? (TODO)
 3. Color each polygon based on its height, so that the peaks are colored red (#ff0000) and the valleys blue
@@ -29,4 +35,10 @@ Check surface files for example. Challenges completed:
 cd surfacedraw
 go run main.go
 ```
+
+## 3. Complex Numbers
+- complex64, complex128
+- Use built-in function complex (returns a complex number from real and imaginary components) ex. complex(1,2) for 1+2i
+- Use built-in real and imag functions to get those components
+- library math/cmplx
 
