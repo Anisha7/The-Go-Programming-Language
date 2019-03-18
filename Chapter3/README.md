@@ -42,3 +42,10 @@ go run main.go
 - Use built-in real and imag functions to get those components
 - library math/cmplx
 
+Challenges (TODO) :
+5. Implement a full-color Mandelbrot using image/NewRGBA and type color.RGBA or color.YCbCr.
+6. Supersampling reduces the effect of pixelation by computing the color value at several points within each pixel and taking the average. The simplest method is to divide each pixel into four "subpixes." Implement this.
+7. Another simple fractal uses Newton's method to find complex solutions to a function such as z^(4) - 1 = 0. Shade each starting point by the number of iterations required to get close to one of the four roots. Color each point by the root it approaches.
+8. Rendering fractals at high zoom levels demands great arithmetic precision. Implement this fractal using 4 different representations of numbers: complex64, complex128, big.Float, and big.Rat (math/big package). Compare performance and memory usage. At what zoom levels do rendering artifacts become visible?
+9. Write a web server that renders fractals and writes image data to the client. Allow the client to specify the x, y, and zoom values as parameters to the HTTP request.
+
