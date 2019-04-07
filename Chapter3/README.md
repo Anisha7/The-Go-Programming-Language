@@ -73,4 +73,13 @@ b := []byte(s)
 s2 := string(b)
 `
 
-- 
+Check out Exercises 3.10 to 3.12 by running the go files in the respective folders.
+
+- strconv package can be used for string <-> int conversions (Atoi, ParseInt, ParseUint)
+
+## 6. Constants
+- iota: A constant generator, used to create a sequence of related values without spelling each one out. Ex. weekdays.
+- See how its used in netflag
+- Check exercise 3.13 for more examples on how to use iota
+- Untyped Constants : super precisely represented by compiler and can by used in expressions even though some may be too big to be stored in a specific variable like int.
+
