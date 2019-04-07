@@ -1,4 +1,5 @@
 // a non-recursive version of comma, using bytes.Bugger instead of string concatenation
+// modified to deal with floating-point numbers and an optional sign
 
 package main
 
@@ -9,9 +10,19 @@ import (
 )
 
 func comma(s string) string {
+	// account for optional sign +/-
+	temp := 0
+	if s[0] == '+' || s[0] == '-' {
+		temp = 1
+	}
+
 	var buf bytes.Buffer
+	found := false
 	for i := range s {
-		if i != 0 && (len(s)-i)%3 == 0 {
+		if s[i] == '.' {
+			found = true
+		}
+		if i != temp && (len(s)-i-temp)%3 == 0 && !found {
 			buf.WriteString(",")
 		}
 		buf.WriteByte(s[i])
