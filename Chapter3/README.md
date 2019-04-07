@@ -53,6 +53,24 @@ Challenges (TODO) :
 - true, false
 
 ## 5. Strings
-- Building up strings can be a lot of allocation and copying. In these cases, using bytes.Buffer type can be more efficient.
-- 
+- Try these uses of string to remove prefix/suffixes and format integer strings
+`
+cd basename1
+go run main.go '/loc/hello.py' // prints hello
 
+cd basename2
+go run main.go '/loc/hello.py' // prints hello
+
+cd comma
+go run main.go '1234523' // prints 1,234,523
+`
+
+- Building up strings can be a lot of allocation and copying. In these cases, using bytes.Buffer type can be more efficient.
+- Strings can be converted to bytes slices and back:
+`
+s := "abc"
+b := []byte(s)
+s2 := string(b)
+`
+
+- 
