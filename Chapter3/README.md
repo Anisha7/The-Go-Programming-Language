@@ -49,3 +49,10 @@ Challenges (TODO) :
 8. Rendering fractals at high zoom levels demands great arithmetic precision. Implement this fractal using 4 different representations of numbers: complex64, complex128, big.Float, and big.Rat (math/big package). Compare performance and memory usage. At what zoom levels do rendering artifacts become visible?
 9. Write a web server that renders fractals and writes image data to the client. Allow the client to specify the x, y, and zoom values as parameters to the HTTP request.
 
+## 4. Booleans
+- true, false
+
+## 5. Strings
+- Building up strings can be a lot of allocation and copying. In these cases, using bytes.Buffer type can be more efficient.
+- 
+
